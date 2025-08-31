@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teteza - Protect Nature, Earn Rewards</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .page {
+            display: none;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2E8B57;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #2E8B57;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #2E8B57;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #26734a;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #2E8B57;
+            border: 2px solid #2E8B57;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Card Styles */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Navigation */
+        .nav-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #2E8B57;
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        /* Form Elements */
+        select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background-color: #eee;
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            background-color: #2E8B57;
+            height: 100%;
+            border-radius: 10px;
+            width: 40%; /* Example value */
+        }
+        
+        /* Feed Items */
+        .feed-item {
+            margin: 15px 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .feed-item img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #2E8B57;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Leaderboard */
+        .leader-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .rank {
+            width: 30px;
+            height: 30px;
+            background-color: #2E8B57;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        /* Badges */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .badge {
+            width: 100px;
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .badge-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #f1f1f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 30px;
+            color: #2E8B57;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="page active">
+            <div class="logo" style="margin: 50px auto; justify-content: center;">
+                <div class="logo-circle">T</div>
+                <div class="logo-text">Teteza</div>
+            </div>
+            <h2 style="text-align: center; margin: 20px 0; color: #2E8B57;">Protect Nature, Earn Rewards</h2>
+            <div style="margin-top: 100px;">
+                <button class="btn btn-primary" onclick="navigateTo('login-screen')">Sign In</button>
+                <button class="btn btn-secondary" onclick="navigateTo('register-screen')">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Sign In to Your Account</p>
+            </header>
+            
+            <div style="margin-top: 30px;">
+                <input type="text" placeholder="Email" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <input type="password" placeholder="Password" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <button class="btn btn-primary" onclick="navigateTo('home-screen')">Sign In</button>
+                <p style="text-align: center; margin-top: 20px;">Don't have an account? <a href="#" onclick="navigateTo('register-screen')" style="color: #2E8B57;">Register</a></p>
+            </div>
+        </div>
+
+        <!-- Registration Screen -->
+        <div id="register-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Create Your Account</p>
+            </header>
+            
+            <div style="margin-top: 30px;">
+                <input type="text" placeholder="Full Name" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <input type="password" placeholder="Password" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <input type="password" placeholder="Confirm Password" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+                <button class="btn btn-primary" onclick="navigateTo('home-screen')">Register</button>
+                <p style="text-align: center; margin-top: 20px;">Already have an account? <a href="#" onclick="navigateTo('login-screen')" style="color: #2E8B57;">Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Welcome, Eco Warrior!</p>
+            </header>
+            
+            <div class="card">
+                <h3>Your Eco Points</h3>
+                <h1 style="color: #2E8B57; font-size: 36px; margin: 10px 0;">120</h1>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <p>80 points until your next reward!</p>
+            </div>
+            
+            <button class="btn btn-primary" onclick="navigateTo('report-activity-screen')">Report Activity</button>
+            
+            <div class="card">
+                <h3>Recent Activities</h3>
+                <div class="feed-item">
+                    <div class="user-info">
+                        <div class="avatar">J</div>
+                        <div>
+                            <strong>John Doe</strong>
+                            <p>Planted 5 trees</p>
+                        </div>
+                    </div>
+                    <p>Just finished planting trees at the community park! 🌳</p>
+                    <div style="color: #2E8B57; margin-top: 5px;">+50 points</div>
+                </div>
+                
+                <div class="feed-item">
+                    <div class="user-info">
+                        <div class="avatar">S</div>
+                        <div>
+                            <strong>Sarah Smith</strong>
+                            <p>Beach clean-up</p>
+                        </div>
+                    </div>
+                    <p>Cleaned up 2kg of plastic from the beach! 🏖️</p>
+                    <div style="color: #2E8B57; margin-top: 5px;">+40 points</div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="nav-bottom">
+                <div class="nav-item active" onclick="navigateTo('home-screen')">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('community-screen')">
+                    <div class="nav-icon">👥</div>
+                    <span>Community</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('report-activity-screen')">
+                    <div class="nav-icon">➕</div>
+                    <span>Report</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('rewards-screen')">
+                    <div class="nav-icon">🎁</div>
+                    <span>Rewards</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('leaderboard-screen')">
+                    <div class="nav-icon">🏆</div>
+                    <span>Leaderboard</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Activity Screen -->
+        <div id="report-activity-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Report Your Activity</p>
+            </header>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn btn-primary" style="margin-bottom: 20px;">
+                    📷 Take Photo
+                </button>
+                
+                <button class="btn btn-secondary" style="margin-bottom: 20px;">
+                    🎥 Upload Video
+                </button>
+                
+                <select>
+                    <option disabled selected>Select activity type</option>
+                    <option>Tree Planting</option>
+                    <option>Recycling</option>
+                    <option>Clean-up</option>
+                    <option>Water Conservation</option>
+                </select>
+                
+                <textarea placeholder="Add description (optional)" rows="4"></textarea>
+                
+                <button class="btn btn-primary" onclick="alert('Activity submitted! +50 points'); navigateTo('home-screen')">
+                    Submit & Earn Points
+                </button>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="nav-bottom">
+                <div class="nav-item" onclick="navigateTo('home-screen')">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('community-screen')">
+                    <div class="nav-icon">👥</div>
+                    <span>Community</span>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">➕</div>
+                    <span>Report</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('rewards-screen')">
+                    <div class="nav-icon">🎁</div>
+                    <span>Rewards</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('leaderboard-screen')">
+                    <div class="nav-icon">🏆</div>
+                    <span>Leaderboard</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rewards Screen -->
+        <div id="rewards-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Your Points & Rewards</p>
+            </header>
+            
+            <div class="card">
+                <h3>Your Points Balance</h3>
+                <h1 style="color: #2E8B57; font-size: 36px; margin: 10px 0;">120</h1>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <p>80 points until your next reward!</p>
+            </div>
+            
+            <h3>Available Rewards</h3>
+            
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4>Airtime</h4>
+                        <p>Get mobile airtime credit</p>
+                    </div>
+                    <button class="btn btn-primary" style="width: auto; padding: 8px 15px;" disabled>
+                        200 pts
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4>Shopping Voucher</h4>
+                        <p>Discount at eco-friendly stores</p>
+                    </div>
+                    <button class="btn btn-primary" style="width: auto; padding: 8px 15px;" disabled>
+                        500 pts
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4>Eco Badge</h4>
+                        <p>Show off your achievements</p>
+                    </div>
+                    <button class="btn btn-primary" style="width: auto; padding: 8px 15px;">
+                        100 pts
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="nav-bottom">
+                <div class="nav-item" onclick="navigateTo('home-screen')">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('community-screen')">
+                    <div class="nav-icon">👥</div>
+                    <span>Community</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('report-activity-screen')">
+                    <div class="nav-icon">➕</div>
+                    <span>Report</span>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">🎁</div>
+                    <span>Rewards</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('leaderboard-screen')">
+                    <div class="nav-icon">🏆</div>
+                    <span>Leaderboard</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Screen -->
+        <div id="community-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Community Activities</p>
+            </header>
+            
+            <div class="feed-item">
+                <div class="user-info">
+                    <div class="avatar">J</div>
+                    <div>
+                        <strong>John Doe</strong>
+                        <p>2 hours ago</p>
+                    </div>
+                </div>
+                <p>Just finished planting trees at the community park! 🌳</p>
+                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                    Tree Planting Photo
+                </div>
+                <div style="display: flex; margin-top: 10px;">
+                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 24</div>
+                    <div style="color: #2E8B57;">💬 5</div>
+                </div>
+            </div>
+            
+            <div class="feed-item">
+                <div class="user-info">
+                    <div class="avatar">S</div>
+                    <div>
+                        <strong>Sarah Smith</strong>
+                        <p>5 hours ago</p>
+                    </div>
+                </div>
+                <p>Cleaned up 2kg of plastic from the beach! 🏖️</p>
+                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                    Beach Cleanup Photo
+                </div>
+                <div style="display: flex; margin-top: 10px;">
+                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 42</div>
+                    <div style="color: #2E8B57;">💬 8</div>
+                </div>
+            </div>
+            
+            <div class="feed-item">
+                <div class="user-info">
+                    <div class="avatar">M</div>
+                    <div>
+                        <strong>Mike Johnson</strong>
+                        <p>1 day ago</p>
+                    </div>
+                </div>
+                <p>Recycled all my plastic waste this month! ♻️</p>
+                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                    Recycling Photo
+                </div>
+                <div style="display: flex; margin-top: 10px;">
+                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 35</div>
+                    <div style="color: #2E8B57;">💬 3</div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="nav-bottom">
+                <div class="nav-item" onclick="navigateTo('home-screen')">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">👥</div>
+                    <span>Community</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('report-activity-screen')">
+                    <div class="nav-icon">➕</div>
+                    <span>Report</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('rewards-screen')">
+                    <div class="nav-icon">🎁</div>
+                    <span>Rewards</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('leaderboard-screen')">
+                    <div class="nav-icon">🏆</div>
+                    <span>Leaderboard</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="page">
+            <header>
+                <div class="logo">
+                    <div class="logo-circle">T</div>
+                    <div class="logo-text">Teteza</div>
+                </div>
+                <p>Top Eco Heroes</p>
+            </header>
+            
+            <div class="card">
+                <h3>Leaderboard</h3>
+                
+                <div class="leader-item">
+                    <div class="rank">1</div>
+                    <div class="avatar">S</div>
+                    <div style="flex-grow: 1;">
+                        <strong>Sarah Smith</strong>
+                        <p>850 points</p>
+                    </div>
+                    <div style="color: #2E8B57; font-weight: bold;">🥇</div>
+                </div>
+                
+                <div class="leader-item">
+                    <div class="rank">2</div>
+                    <div class="avatar">M</div>
+                    <div style="flex-grow: 1;">
+                        <strong>Mike Johnson</strong>
+                        <p>720 points</p>
+                    </div>
+                    <div style="color: #2E8B57; font-weight: bold;">🥈</div>
+                </div>
+                
+                <div class="leader-item">
+                    <div class="rank">3</div>
+                    <div class="avatar">J</div>
+                    <div style="flex-grow: 1;">
+                        <strong>John Doe</strong>
+                        <p>680 points</p>
+                    </div>
+                    <div style="color: #2E8B57; font-weight: bold;">🥉</div>
+                </div>
+                
+                <div class="leader-item">
+                    <div class="rank">4</div>
+                    <div class="avatar">A</div>
+                    <div style="flex-grow: 1;">
+                        <strong>Anna Lee</strong>
+                        <p>550 points</p>
+                    </div>
+                </div>
+                
+                <div class="leader-item">
+                    <div class="rank">5</div>
+                    <div class="avatar">D</div>
+                    <div style="flex-grow: 1;">
+                        <strong>David Kim</strong>
+                        <p>520 points</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Your Badges</h3>
+                <div class="badges-container">
+                    <div class="badge">
+                        <div class="badge-icon">🌳</div>
+                        <p>Tree Champion</p>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">🔄</div>
+                        <p>Recycler</p>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon">⭐</div>
+                        <p>Green Beginner</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation -->
+            <div class="nav-bottom">
+                <div class="nav-item" onclick="navigateTo('home-screen')">
+                    <div class="nav-icon">🏠</div>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('community-screen')">
+                    <div class="nav-icon">👥</div>
+                    <span>Community</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('report-activity-screen')">
+                    <div class="nav-icon">➕</div>
+                    <span>Report</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('rewards-screen')">
+                    <div class="nav-icon">🎁</div>
+                    <span>Rewards</span>
+                </div>
+                <div class="nav-item active">
+                    <div class="nav-icon">🏆</div>
+                    <span>Leaderboard</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation function
+        function navigateTo(screenId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(screenId).classList.add('active');
+            
+            // Update navigation highlights
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+        
+        // Set up navigation item clicks
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
