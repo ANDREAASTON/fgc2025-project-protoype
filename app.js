@@ -1,3 +1,33 @@
+// --- Uploaded Photos ---
+let uploadedPhotos = [null, null, null]; // [tree, beach, recycling]
+
+function resetPhotos() {
+    uploadedPhotos = [null, null, null];
+    for (let i = 1; i <= 3; i++) {
+        const img = document.getElementById('feed-photo-img-' + i);
+        const txt = document.getElementById('feed-photo-text-' + i);
+        if (img && txt) {
+            img.style.display = 'none';
+            img.src = '';
+            txt.style.display = '';
+        }
+    }
+    const preview = document.getElementById('report-preview');
+    if (preview) {
+        preview.style.display = 'none';
+        preview.src = '';
+    }
+}
+
+function showPhotoInFeed(typeIdx, dataUrl) {
+    const img = document.getElementById('feed-photo-img-' + (typeIdx + 1));
+    const txt = document.getElementById('feed-photo-text-' + (typeIdx + 1));
+    if (img && txt) {
+        img.src = dataUrl;
+        img.style.display = '';
+        txt.style.display = 'none';
+    }
+}
 // --- State ---
 let likes = [24, 42, 35];
 let comments = [
@@ -119,7 +149,7 @@ function logoutUser() {
         document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
         });
-        // Reset likes/comments/points
+        // Reset likes/comments/points/photos
         likes = [24, 42, 35];
         comments = [
             [
@@ -146,6 +176,7 @@ function logoutUser() {
             ]
         ];
         points = 120;
+        resetPhotos();
         // Update UI
         for (let i = 1; i <= 3; i++) {
             updateLikeDisplay(i);
@@ -192,19 +223,55 @@ window.addEventListener('DOMContentLoaded', function() {
             toggleCommentSection(Number(this.dataset.feed));
         });
     });
-    // Initial UI
-    for (let i = 1; i <= 3; i++) {
-      updateLikeDisplay(i);
-      updateCommentDisplay(i);
-    }
-    updatePointsDisplay();
-    // Report activity button
-    const reportBtn = document.querySelector('#report-activity-screen .btn.btn-primary[onclick*="alert"]');
-    if (reportBtn) {
-      reportBtn.onclick = function() {
-        reportActivity();
-        alert('Activity submitted! +50 points');
-        navigateTo('home-screen');
-      };
-    }
+        // Initial UI
+        for (let i = 1; i <= 3; i++) {
+            updateLikeDisplay(i);
+            updateCommentDisplay(i);
+        }
+        updatePointsDisplay();
+
+        // --- Photo upload logic ---
+        const cameraInput = document.getElementById('cameraInput');
+        const preview = document.getElementById('report-preview');
+        let selectedPhotoType = 0; // 0: tree, 1: beach, 2: recycling
+        if (cameraInput) {
+            cameraInput.onchange = function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        preview.src = ev.target.result;
+                        preview.style.display = '';
+                        // Guess activity type from select
+                        const sel = document.querySelector('#report-activity-screen select');
+                        if (sel) {
+                            const idx = sel.selectedIndex - 1;
+                            if (idx >= 0 && idx <= 2) selectedPhotoType = idx;
+                        }
+                        uploadedPhotos[selectedPhotoType] = ev.target.result;
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            };
+        }
+
+        // Report activity button
+        const reportBtn = document.querySelector('#report-activity-screen .btn.btn-primary[onclick*="alert"]');
+        if (reportBtn) {
+            reportBtn.onclick = function() {
+                // Guess activity type from select
+                const sel = document.querySelector('#report-activity-screen select');
+                let idx = sel ? sel.selectedIndex - 1 : 0;
+                if (idx < 0 || idx > 2) idx = 0;
+                // If photo uploaded, show in feed
+                if (uploadedPhotos[idx]) {
+                    showPhotoInFeed(idx, uploadedPhotos[idx]);
+                }
+                reportActivity();
+                alert('Activity submitted! +50 points');
+                navigateTo('home-screen');
+                // Reset preview
+                if (preview) { preview.style.display = 'none'; preview.src = ''; }
+                cameraInput.value = '';
+            };
+        }
 });

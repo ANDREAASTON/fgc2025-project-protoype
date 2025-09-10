@@ -162,6 +162,7 @@
                 <button class="btn btn-primary" style="margin-bottom: 20px;" onclick="document.getElementById('cameraInput').click();">
                     📷 Take Photo
                 </button>
+                <img id="report-preview" src="" alt="Preview" style="display:none;max-width:100%;margin-bottom:10px;border-radius:10px;" />
                 
                 <select>
                     <option disabled selected>Select activity type</option>
@@ -309,8 +310,8 @@
                         </div>
                     </div>
                     <p>Just finished planting trees at the community park! 🌳</p>
-                    <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
-                        Tree Planting Photo
+                    <div id="feed-photo-1" style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                        <img src="treeplanting.jpg" alt="Tree Planting" style="max-width:100%;max-height:100%;border-radius:10px;" />
                     </div>
                     <div style="display: flex; margin-top: 10px;">
                         <div class="like-btn" data-feed="1" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-1">24</span></div>
@@ -332,8 +333,8 @@
                     </div>
                 </div>
                 <p>Cleaned up 2kg of plastic from the beach! 🏖️</p>
-                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
-                    Beach Cleanup Photo
+                <div id="feed-photo-2" style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                    <img src="beatchcleanup.jpg" alt="Beach Cleanup" style="max-width:100%;max-height:100%;border-radius:10px;" />
                 </div>
                 <div style="display: flex; margin-top: 10px;">
                     <div class="like-btn" data-feed="2" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-2">42</span></div>
@@ -355,8 +356,8 @@
                     </div>
                 </div>
                 <p>Recycled all my plastic waste this month! ♻️</p>
-                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
-                    Recycling Photo
+                <div id="feed-photo-3" style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                    <img src="recycling.jpeg" alt="Recycling" style="max-width:100%;max-height:100%;border-radius:10px;" />
                 </div>
                 <div style="display: flex; margin-top: 10px;">
                     <div class="like-btn" data-feed="3" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-3">35</span></div>
