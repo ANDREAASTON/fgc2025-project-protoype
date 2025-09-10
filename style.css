@@ -1,7 +1,7 @@
 /* Logo image wrapper for white background and circular style */
 .logo-img-wrapper {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     background: white;
     border-radius: 50%;
     display: flex;
@@ -12,8 +12,8 @@
 }
 
 .logo-img {
-    width: 36px;
-    height: 36px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     display: block;
 }
