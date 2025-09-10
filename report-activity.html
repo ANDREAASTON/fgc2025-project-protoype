@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teteza - Report Activity</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-img-wrapper">
+                    <img src="logo.png" alt="Teteza Logo" class="logo-img">
+                </div>
+            </div>
+            <p>Report Your Activity</p>
+        </header>
+        <div style="margin-top: 20px;">
+            <input type="file" accept="image/*" capture="environment" id="cameraInput" style="display:none" />
+            <button class="btn btn-primary" style="margin-bottom: 20px;" onclick="document.getElementById('cameraInput').click();">
+                📷 Take Photo
+            </button>
+            <img id="report-preview" src="" alt="Preview" style="display:none;max-width:100%;margin-bottom:10px;border-radius:10px;" />
+            <select>
+                <option disabled selected>Select activity type</option>
+                <option>Tree Planting</option>
+                <option>Recycling</option>
+                <option>Clean-up</option>
+                <option>Water Conservation</option>
+            </select>
+            <textarea placeholder="Add description (optional)" rows="4"></textarea>
+            <button class="btn btn-primary" onclick="alert('Activity submitted! +50 points'); window.location='home.html';">
+                Submit & Earn Points
+            </button>
+        </div>
+        <div class="nav-bottom">
+            <a class="nav-item" href="home.html">
+                <div class="nav-icon">🏠</div>
+                <span>Home</span>
+            </a>
+            <a class="nav-item" href="community.html">
+                <div class="nav-icon">👥</div>
+                <span>Community</span>
+            </a>
+            <a class="nav-item active" href="report-activity.html">
+                <div class="nav-icon">➕</div>
+                <span>Report</span>
+            </a>
+            <a class="nav-item" href="rewards.html">
+                <div class="nav-icon">🎁</div>
+                <span>Rewards</span>
+            </a>
+            <a class="nav-item" href="leaderboard.html">
+                <div class="nav-icon">🏆</div>
+                <span>Leaderboard</span>
+            </a>
+            <a class="nav-item" href="welcome.html">
+                <div class="nav-icon">🚪</div>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
