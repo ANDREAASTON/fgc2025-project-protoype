@@ -84,6 +84,7 @@
                     <div class="progress-bar"></div>
                 </div>
                 <p>80 points until your next reward!</p>
+                <div id="reward-message" style="color:#2E8B57; font-weight:bold; margin-top:8px;"></div>
             </div>
             
             <button class="btn btn-primary" onclick="navigateTo('report-activity-screen')">Report Activity</button>
@@ -221,6 +222,7 @@
                     <div class="progress-bar"></div>
                 </div>
                 <p>80 points until your next reward!</p>
+                <div id="reward-message" style="color:#2E8B57; font-weight:bold; margin-top:8px;"></div>
             </div>
             
             <h3>Available Rewards</h3>
@@ -298,25 +300,30 @@
                 <p>Community Activities</p>
             </header>
             
-            <div class="feed-item">
-                <div class="user-info">
-                     <div class="avatar">👨‍🦱</div>
-                    <div>
-                        <strong>John Doe</strong>
-                        <p>2 hours ago</p>
+                <div class="feed-item" id="feed-item-1">
+                    <div class="user-info">
+                        <div class="avatar">👨‍🦱</div>
+                        <div>
+                            <strong>John Doe</strong>
+                            <p>2 hours ago</p>
+                        </div>
+                    </div>
+                    <p>Just finished planting trees at the community park! 🌳</p>
+                    <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
+                        Tree Planting Photo
+                    </div>
+                    <div style="display: flex; margin-top: 10px;">
+                        <div class="like-btn" data-feed="1" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-1">24</span></div>
+                        <div class="comment-btn" data-feed="1" style="color: #2E8B57; cursor:pointer;">💬 <span id="comment-count-1">5</span></div>
+                    </div>
+                    <div class="comment-section" id="comment-section-1" style="display:none; margin-top:10px;">
+                        <div id="comments-list-1"></div>
+                        <input type="text" id="comment-input-1" placeholder="Type a comment..." style="width:80%;padding:6px;">
+                        <button onclick="addComment(1)" style="padding:6px 10px;">Send</button>
                     </div>
                 </div>
-                <p>Just finished planting trees at the community park! 🌳</p>
-                <div style="background-color: #e9f5ef; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2E8B57; font-size: 24px;">
-                    Tree Planting Photo
-                </div>
-                <div style="display: flex; margin-top: 10px;">
-                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 24</div>
-                    <div style="color: #2E8B57;">💬 5</div>
-                </div>
-            </div>
             
-            <div class="feed-item">
+            <div class="feed-item" id="feed-item-2">
                 <div class="user-info">
                     <div class="avatar">👩‍🦰</div>
                     <div>
@@ -329,12 +336,17 @@
                     Beach Cleanup Photo
                 </div>
                 <div style="display: flex; margin-top: 10px;">
-                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 42</div>
-                    <div style="color: #2E8B57;">💬 8</div>
+                    <div class="like-btn" data-feed="2" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-2">42</span></div>
+                    <div class="comment-btn" data-feed="2" style="color: #2E8B57; cursor:pointer;">💬 <span id="comment-count-2">8</span></div>
+                </div>
+                <div class="comment-section" id="comment-section-2" style="display:none; margin-top:10px;">
+                    <div id="comments-list-2"></div>
+                    <input type="text" id="comment-input-2" placeholder="Type a comment..." style="width:80%;padding:6px;">
+                    <button onclick="addComment(2)" style="padding:6px 10px;">Send</button>
                 </div>
             </div>
             
-            <div class="feed-item">
+            <div class="feed-item" id="feed-item-3">
                 <div class="user-info">
                     <div class="avatar">👨‍🦱</div>
                     <div>
@@ -347,8 +359,13 @@
                     Recycling Photo
                 </div>
                 <div style="display: flex; margin-top: 10px;">
-                    <div style="margin-right: 15px; color: #2E8B57;">❤️ 35</div>
-                    <div style="color: #2E8B57;">💬 3</div>
+                    <div class="like-btn" data-feed="3" style="margin-right: 15px; color: #2E8B57; cursor:pointer;">❤️ <span id="like-count-3">35</span></div>
+                    <div class="comment-btn" data-feed="3" style="color: #2E8B57; cursor:pointer;">💬 <span id="comment-count-3">3</span></div>
+                </div>
+                <div class="comment-section" id="comment-section-3" style="display:none; margin-top:10px;">
+                    <div id="comments-list-3"></div>
+                    <input type="text" id="comment-input-3" placeholder="Type a comment..." style="width:80%;padding:6px;">
+                    <button onclick="addComment(3)" style="padding:6px 10px;">Send</button>
                 </div>
             </div>
             
