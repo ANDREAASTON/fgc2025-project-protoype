@@ -1,0 +1,227 @@
+/* Logo image wrapper for white background and circular style */
+.logo-img-wrapper {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    display: block;
+}
+/* Teteza App Styles - extracted from index.html */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: white;
+    position: relative;
+    overflow-x: hidden;
+}
+.page {
+    display: none;
+    padding: 20px;
+    min-height: 100vh;
+}
+.active {
+    display: block;
+}
+header {
+    background-color: #2E8B57;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #2E8B57;
+}
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-primary {
+    background-color: #2E8B57;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #26734a;
+}
+.btn-secondary {
+    background-color: white;
+    color: #2E8B57;
+    border: 2px solid #2E8B57;
+}
+.btn-secondary:hover {
+    background-color: #f0f0f0;
+}
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.nav-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+}
+.nav-item.active {
+    color: #2E8B57;
+}
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.progress-container {
+    background-color: #eee;
+    border-radius: 10px;
+    height: 20px;
+    margin: 15px 0;
+}
+.progress-bar {
+    background-color: #2E8B57;
+    height: 100%;
+    border-radius: 10px;
+    width: 40%;
+}
+.feed-item {
+    margin: 15px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+.feed-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #2E8B57;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.leader-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.rank {
+    width: 30px;
+    height: 30px;
+    background-color: #2E8B57;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
+}
+.badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.badge {
+    width: 100px;
+    text-align: center;
+    margin: 10px;
+}
+.badge-icon {
+    width: 70px;
+    height: 70px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 30px;
+    color: #2E8B57;
+}
